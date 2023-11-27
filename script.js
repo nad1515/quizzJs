@@ -57,5 +57,7 @@ const questions = [
 document.addEventListener("DOMContentLoaded", () => {
   
 // démarrage du quizz
+
+
   
 });
