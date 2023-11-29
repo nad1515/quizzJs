@@ -67,41 +67,42 @@ let affichQuestion= document.getElementById("question");
 
 
 function genereQuestion() {
-  questions[questionIndex].answers.forEach(answer => {
-    console.log(answer)
+  questions[questionIndex].answers.forEach((answer, index) => {
+    console.log(answer, index);
     affichQuestion.textContent = questions[questionIndex].question;
       let li = document.createElement("li");
       li.classList.add("answer");
        li.textContent = answer;
   
        affichAnswers.appendChild(li);
+       
+   li.addEventListener("click",(event)=>{
+     console.log(event.target.innerText);
+  
+    affichAnswers.innerHTML = "";
+   if( index === questions[questionIndex].correctAnswerIndex){
+ 
+    score ++;
+    affichScore.textContent = score;
+ 
+  }
+  questionIndex ++;
+    if(questionIndex < questions.length ){ 
+      genereQuestion();
+ 
+    
+    } else{
+     affichQuestion.textContent = "Merci d'avoir repondu";
+     affichAnswers.innerHTML = "";
+ 
+    }
+   
+  });
       
       
    });
 }
 
-affichAnswers.addEventListener("click",(event)=>{
- console.log(event.target.innerText);
- 
- affichAnswers.innerHTML = "";
-  if(event.target.innerText === questions[questionIndex].correctAnswerIndex){
-
-   score ++;
-   affichScore.textContent = score;
-
- }
- questionIndex ++;
-   if(questionIndex < questions.length ){ 
-     genereQuestion();
-
-   
-   } else{
-    affichQuestion.textContent = "Merci d'avoir repondu";
-    affichAnswers.innerHTML = "";
-
-   }
-  
- });
  genereQuestion();
 
  });
