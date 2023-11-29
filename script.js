@@ -57,14 +57,15 @@ const questions = [
 
 document.addEventListener("DOMContentLoaded", () => {
 let questionIndex = 0;
-let score;
+let score = 0;
 let affichAnswers = document.getElementById("answers");
 let affichScore = document.getElementById("score");
    
 let affichQuestion= document.getElementById("question");
   affichQuestion.textContent = questions[questionIndex].question;
   console.log(questions[questionIndex]);
-genereQuestion();
+
+
 function genereQuestion() {
   questions[questionIndex].answers.forEach(answer => {
     console.log(answer)
@@ -101,6 +102,6 @@ affichAnswers.addEventListener("click",(event)=>{
    }
   
  });
-
+ genereQuestion();
 
  });
